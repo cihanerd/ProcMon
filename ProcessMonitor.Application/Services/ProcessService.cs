@@ -14,19 +14,22 @@ public class ProcessService : IProcessService
         _processMonitorHub = processMonitorHub;
     }
 
-    public async Task<List<ProcessInfo>> GetAllProcessesAsync()
+    public async Task<List<ProcessInfoResponseDto>> GetAllProcessesAsync()
     {
-        return await _processRepository.GetAllProcessesAsync();
+        var res = await _processRepository.GetAllProcessesAsync();
+        return res.ToDtoList();
     }
 
-    public async Task<List<ProcessInfo>> GetImportantProcessesAsync()
+    public async Task<List<ProcessInfoResponseDto>> GetImportantProcessesAsync()
     {
-        return await _processRepository.GetImportantProcessesAsync();
+        var res = await _processRepository.GetImportantProcessesAsync();
+        return res.ToDtoList();
     }
 
-    public async Task<ProcessInfo> GetProcessByIdAsync(int id)
+    public async Task<ProcessInfoResponseDto> GetProcessByIdAsync(int id)
     {
-        return await _processRepository.GetProcessByIdAsync(id);
+        var res = await _processRepository.GetProcessByIdAsync(id);
+        return res.ToDto();
     }
 
     public async Task<bool> IsMonitoringAsync()

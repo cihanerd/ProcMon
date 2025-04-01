@@ -20,7 +20,7 @@ public class ProcessController : ControllerBase
     /// </summary>
     /// <returns>A list of all running processes.</returns>
     [HttpGet]
-    public async Task<ActionResult<List<ProcessInfo>>> GetAllProcesses()
+    public async Task<ActionResult<List<ProcessInfoResponseDto>>> GetAllProcesses()
     {
         return await _processService.GetAllProcessesAsync();
     }
@@ -30,7 +30,7 @@ public class ProcessController : ControllerBase
     /// </summary>
     /// <returns>A filtered list of important processes.</returns>
     [HttpGet("important")]
-    public async Task<ActionResult<List<ProcessInfo>>> GetImportantProcesses()
+    public async Task<ActionResult<List<ProcessInfoResponseDto>>> GetImportantProcesses()
     {
         return await _processService.GetImportantProcessesAsync();
     }
@@ -41,7 +41,7 @@ public class ProcessController : ControllerBase
     /// <param name="id">The process ID.</param>
     /// <returns>The process details if found; otherwise, NotFound.</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<ProcessInfo>> GetProcessById(int id)
+    public async Task<ActionResult<ProcessInfoResponseDto>> GetProcessById(int id)
     {
         var process = await _processService.GetProcessByIdAsync(id);
         if (process == null)
