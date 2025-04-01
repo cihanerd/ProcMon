@@ -1,0 +1,26 @@
+.chart-container {
+    height: 300px;
+    margin-bottom: 20px;
+}
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.monitoring-status {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 10px;
+}
+.status-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+.status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.process-important {
+    background-color: rgba(255, 243, 205, 0.5);
+}
