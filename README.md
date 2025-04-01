@@ -25,7 +25,7 @@ ProcessMonitor
 ### 2️⃣ Installation
 ```sh
 # Clone the repository
-git clone https://github.com/your-repo/ProcessMonitor.git
+git clone https://github.com/cihanerd/ProcMon.git
 cd ProcessMonitor
 ```
 
@@ -37,7 +37,7 @@ cd ProcessMonitor.API
 # Run the application
 dotnet run
 ```
-The API will be available at: `http://localhost:5000`
+The API will be available at: `http://localhost:5114`
 
 ---
 
@@ -56,9 +56,8 @@ The API will be available at: `http://localhost:5000`
 ### 🔹 Real-time Notifications (SignalR)
 Clients can connect to SignalR hub at:
 ```
-/ws/notifications
+/processhub
 ```
-- Receives notifications when any process exceeds 80% CPU usage.
 
 ---
 
@@ -74,7 +73,7 @@ Clients can connect to SignalR hub at:
 ## 📖 Documentation for Developers
 To allow external developers to integrate additional clients, API documentation is auto-generated with Swagger:
 ```
-http://localhost:5000/swagger
+http://localhost:5114/swagger
 ```
 Developers can extend the system by implementing new UI clients using:
 - Web-based clients (React, Angular, etc.)
