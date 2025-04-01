@@ -1,0 +1,6 @@
+@ProcessMonitor_HostAddress = http://localhost:7312
+
+GET {{ProcessMonitor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

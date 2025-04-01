@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessMonitor.Application\ProcessMonitor.Application.csproj" />
+    <ProjectReference Include="..\ProcessMonitor.Infrastructure\ProcessMonitor.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProcessMonitor.Presentation\ProcessMonitor.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>
