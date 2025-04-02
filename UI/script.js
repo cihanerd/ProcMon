@@ -223,6 +223,10 @@ function initializeSignalR() {
         createMemoryChart(processes);
     });
 
+    connection.on('ReceiveNotification', (notification) => {
+        alert(notification.message);
+    });
+
     connection.start()
         .then(() => console.log('SignalR Connected'))
         .catch(err => console.error('SignalR Connection Error: ', err));
