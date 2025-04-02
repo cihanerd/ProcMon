@@ -25,6 +25,11 @@ public class SignalRProcessMonitorHub : IProcessMonitorHub, IDisposable
         await _hubContext.Clients.All.SendAsync(SignalRConsts.ReceiveProcesses, processes);
     }
 
+    public async Task BroadcastNotificationAsync(Notification notification)
+    {
+        await _hubContext.Clients.All.SendAsync(SignalRConsts.ReceiveNotification, notification);
+    }
+
     public async Task BroadcastErrorAsync(string errorMessage)
     {
         await _hubContext.Clients.All.SendAsync(SignalRConsts.Error, errorMessage);
@@ -51,6 +56,9 @@ public class SignalRProcessMonitorHub : IProcessMonitorHub, IDisposable
                 {
                     var importantProcesses = await _processRepository.GetImportantProcessesAsync();
                     await BroadcastProcessesAsync(importantProcesses.ToDtoList());
+
+                    CheckAndSendNotificationsAsync(importantProcesses);
+
                     await Task.Delay(_updateInterval, _cts.Token);
                 }
                 catch (OperationCanceledException)
@@ -92,6 +100,19 @@ public class SignalRProcessMonitorHub : IProcessMonitorHub, IDisposable
 
         _isMonitoring = false;
         await Task.CompletedTask;
+    }
+
+    private void CheckAndSendNotificationsAsync(IEnumerable<ProcessInfo> processes)
+    {
+        foreach (var process in processes)
+        {
+            if (process.CpuUsage > 80)
+            {
+                var notification = new Notification($"Process {process.Name} exceeded CPU limit!", process.Id, process.Name);
+
+                _ = BroadcastNotificationAsync(notification);
+            }
+        }
     }
 
     public void Dispose()
