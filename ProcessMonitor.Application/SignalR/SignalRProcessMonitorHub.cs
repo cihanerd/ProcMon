@@ -106,7 +106,7 @@ public class SignalRProcessMonitorHub : IProcessMonitorHub, IDisposable
     {
         foreach (var process in processes)
         {
-            if (process.CpuUsage > 80)
+            if (process.CpuUsage > 10)
             {
                 var notification = new Notification($"Process {process.Name} exceeded CPU limit!", process.Id, process.Name);
 
